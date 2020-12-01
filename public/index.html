@@ -4,7 +4,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <!-- 这里的"<%= BASE_URL %>"语法是获得当前路径,整体是获取当前路径下的favicon.ico文件，在打包后不会显示这种语法,打包后会变成：href="/favicon.ico"。 -->
+    <!-- public文件夹下的所有内容会“原封不动”的被打包到dist下 -->
+    <link rel="icon" href="<%= BASE_URL %>new_i.ico">
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
   <body>
