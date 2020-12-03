@@ -1,5 +1,6 @@
 <template>
   <div id="home">
+    <!-- navbar部分 -->
     <div id="home_navbar">
       <navbar>
         <template v-slot:center>
@@ -7,16 +8,33 @@
         </template>
       </navbar>
     </div>
+
+    <!-- slide部分 -->
+    <Slide>
+      <template v-slot:imgContent>
+        <!-- 解决v-for报错，加上:key='index'即可 -->
+        <li v-for="(item,index) in banners" :key="index">
+          <a :href="item.link">
+            <img :src="item.image" alt="图片走丢了...">
+          </a>
+        </li>
+      </template>
+      <template v-slot:circleContent>
+        <li v-for="(item,index) in banners" :key="index" class="indicator-li"></li>
+      </template>
+    </Slide>
   </div>
 </template>
 
 <script>
 import Navbar from "components/common/navbar/Navbar";
 import getLunbo from "network/homerequest";
+import Slide from "components/common/slide/Slide";
 export default {
   name: "Home",
   components: {
     Navbar,
+    Slide,
   },
   data() {
     return {
