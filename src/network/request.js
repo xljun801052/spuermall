@@ -6,6 +6,7 @@ export default function request(config) {
   // 封装axios-instance以便发送请求
   const instance = axios.create({
     // Q1:后续研究一下这个baseUrl和传入的config中的url是怎么拼接的？怎么出现了一个localhost……？？？
+    // async:false,
     baseUrl: "http://123.207.32.32:8000",
     timeout: "5000"
   });

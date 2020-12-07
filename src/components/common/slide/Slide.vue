@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import annnimate from "./animate";
+import {animate} from "./animate";
 export default {
   name: "Slide",
   //通过外部传参控制Slide的属性：loop（循环轮播）、autoPlay（自动轮播）、interval（轮播时间间隔）、snapThreshold（切换轮播图片阈值）
@@ -40,21 +40,17 @@ export default {
   data() {
     return {};
   },
-  created() {
-  },
-  mounted() {
-    var content = document.getElementById("slideContent");
-    var view = document.getElementById("view");
-    window.onload = function () {
+  methods: {
+    beginRender() {
+      var content = document.getElementById("slideContent");
+      var view = document.getElementById("view");
       //默认第一个选中变红
-      let li_div = document.querySelector("#indicator"); 
-      // Q5:这个地方结果是空：有人说是没加载出来先取导致...???
-      let li_obj = li_div.children;//HTMLCollection []
-      console.log(li_obj.length)//0
-      var li_arr = []
-      for (var i = 0; i < li_obj.length; i++) {
-        li_arr.push(li_obj.item(i))
-      }
+      let li_div = document.getElementById("indicator");
+      // firstChild:会拿到元素标签中的空白节点(#text); firstElementChild:获取第一个非元素标签中的空白节点的子元素，但是在IE6、7、8中不兼容;使用children[0]，既可获取第一个非空白子元素，也完全在主流浏览器中均实现兼容
+      let default_active = li_div.firstElementChild
+      default_active.className = "active"
+      // console.log(li_div.children[0]);
+      // console.log(li_div.children);
 
       //初始化:给每一个注册事件，点击时变红,点击时移动图片
       var li_list = document.querySelectorAll("ol li");
@@ -66,11 +62,13 @@ export default {
           }
           this.className = "active";
           console.log("点击时索引:" + this.index);
-          move(view, -this.index * content.offsetWidth);
+          animate(view, -this.index * content.offsetWidth);
         };
       }
-    };
+    },
   },
+  created() {},
+  mounted() {},
 };
 </script>
 <style scoped>

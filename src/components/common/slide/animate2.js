@@ -1,5 +1,5 @@
 // 这个函数需要封装一下：让元素以动画形式移动到指定目标处(限X轴位置)
-	function move(ele,target){
+	export function move(ele,target){
 		//先清除上一个定时器
 		// clearInterval(ele.moveId)
 		moveId = setInterval(

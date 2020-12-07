@@ -2,7 +2,7 @@
   动画函数：让任意元素移动任意距离
             element     target
   */
-function animate(element,target) {
+export function animate(element,target) {
 
   // 在开启定时器之前，需要清除上一个定时器
   clearInterval(element.timeId);
