@@ -138,7 +138,7 @@ export default {
       // better-scroll_object.on(param1,param2):param1表示监听事件类型，名字不能随便写，可参考官网。param2是一个函数，当BScroll对象监听到对应事件时执行param2对应的函数。
         //监听滚动事件，后面函数默认传入position参数
       bscroll.on('scroll', (position)=>{
-        console.log(position);
+        // console.log(position);
       })
         //监听上拉加载更多事件。
       bscroll.on('pullingUp',()=>{

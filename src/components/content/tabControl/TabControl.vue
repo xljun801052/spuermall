@@ -1,5 +1,5 @@
 <template>
-  <div id="tab-control">
+  <div class="tab-control">
     <div
       v-for="(item, index) in titles"
       :key="index"
@@ -40,13 +40,13 @@ export default {
 </script>
 
 <style>
-#tab-control {
+.tab-control {
   position: relative;
-  top: 10px;
   display: flex;
   background-color: #fff;
-  /* 想让商品往下一点 设置这个margin-bottom得结合下层div的padding-top使用，也是醉了 */
-  margin-bottom: 10px;
+  height: 60px;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .tab-control-item {

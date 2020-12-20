@@ -31,7 +31,6 @@ export default {
         flex-wrap: wrap;
         /* 使内容均等分展示 */
         justify-content: space-around;
-        padding-top: 10px;
         padding-bottom: 49px;
         overflow: hidden;
     }

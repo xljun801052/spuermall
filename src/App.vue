@@ -53,7 +53,10 @@
     </template>
   </tabbar>
   <!-- 引入"小电视机" -->
-  <router-view></router-view>
+  <!-- keep-alive在路由切换时不要让组件销毁 -->
+  <keep-alive>
+    <router-view></router-view>
+  </keep-alive>
 </template>
 
 <script>

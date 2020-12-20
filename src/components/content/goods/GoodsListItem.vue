@@ -31,7 +31,8 @@ export default {
             //        ①$emit()中的参数没有的话可以不写的！
             //        ②为啥总线叫bus?这单词就有一个翻译叫"总线",当然，我觉得可以起名其他的好听还直白，哈哈~~
             //   】
-            this.$bus.$emit('imgLoaded')
+            //attention!!!这里的事务总线$bus的函数emit和on是来源于mitt,而不是vue,不需要使用$符号
+            this.$bus.emit('imgLoaded')
         }
     }
 }

@@ -16,14 +16,14 @@ export default {
       type: Number,
       // 默认不监听
       default: 0,
-      required: false
+      required: false,
     },
-    pullUpLoad:{
-      type:Boolean,
+    pullUpLoad: {
+      type: Boolean,
       // 默认不需要上拉加载更多
-      default:false,
-      required:false
-    }
+      default: false,
+      required: false,
+    },
   },
   data() {
     return {
@@ -36,15 +36,18 @@ export default {
     scrollTo(x, y, time) {
       this.scroll && this.scroll.scrollTo(x, y, time);
     },
-    finishPullUp(){
+    finishPullUp() {
       // 完成上拉加载，这样下一次上拉加载可以正常执行
-      this.scroll.finishPullUp()
+      this.scroll.finishPullUp();
     },
-    refresh(){
-      console.log("refresh被执行...")
+    refresh() {
       // 主要是因为better-scroll的滚动区域大小是计算出来的特性+图片异步加载慢特性会产生BUG！正常的话图片加载快，在bscroll计算出可滚动区域高度（BScroll.scrollerHeight属性记录）之前已经完成图片加载，则不会产生BUG.如果图片加载慢，
       // 那么bscroll计算可滚动区域高度时会忽略图片的高度。这样可滚动区域就变小了，导致往下滚动时出现滚动不了的BUG.所以要手动刷新一下这个bscroll对象，让其重新计算可滚动区域高度便可以解决。
-      this.scroll && this.scroll.refresh()
+      this.scroll && this.scroll.refresh();
+    },
+    getScrollY() {
+      // 获取Y轴位置
+      return this.scroll ? this.scroll.y : 0;
     },
   },
   mounted() {
@@ -61,21 +64,29 @@ export default {
       // 为了支持他们可以被点击，所以click属性设置为true。
       click: true,
     });
-    
+
     // 添加滚动监听事件
     this.scroll.on("scroll", (position) => {
-      console.log(position);
+      // console.log(position);
       this.$emit("scroll", position);
     });
 
     // 添加上拉加载更多事件
-    this.scroll.on('pullingUp',()=>{
-      console.log("scroll组件已经监听到上拉加载事件！")
-      this.$emit('allReadyToCurrentBottom')
-    })
+    this.scroll.on("pullingUp", () => {
+      // console.log("scroll组件已经监听到上拉加载事件！")
+      this.$emit("allReadyToCurrentBottom");
+    });
   },
 };
 </script>
 
-<style>
+<style scoped>
+.wrapper {
+  position: absolute;
+  top: 44px;
+  bottom: 49px;
+  left: 0px;
+  right: 0px;
+  overflow: hidden;
+}
 </style>

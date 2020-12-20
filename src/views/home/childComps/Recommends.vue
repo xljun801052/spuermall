@@ -6,7 +6,7 @@
     >
       <!-- Q:为什么这个渲染出来的a标签在img的下面而不是涵盖img标签呢？ -->
       <a :href="item.link">
-        <img :src="item.image" alt="推荐好物" class="recommend-img"/>
+        <img :src="item.image" alt="" class="recommend-img"/>
         <div class="recommend-text">{{ item.title }}</div>
       </a>
     </div>
@@ -33,13 +33,14 @@ export default {
     width: 100%;
     /* border-bottom: 3px solid grey; */
     display: flex;
+    justify-content: space-between;
 }
 
 /* 结合父元素中的display:flex,实现图片水平居中 */
 .recommend-item {
   display: flex;
   flex: 1;
-  justify-content: center;
+  justify-content: space-around;
 }
 
 /* a {
@@ -47,20 +48,19 @@ export default {
 } */
 
 .recommend-img {
-    width: 150px;
-    height: 150px;
+    width: 160px;
+    height: 160px;
     margin-top: 15px;
     margin-bottom: 15px;
     /* text-align: center;
     vertical-align: middle;
     display: table-cell; */
      /* display:inline-table; 
-
      vertical-align: middle; */
 }
 
 .recommend-text {
     text-align: center;
-    font-size: 27px;
+    font-size: 25px;
 }
 </style>
