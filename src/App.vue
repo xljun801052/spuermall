@@ -14,7 +14,7 @@
           <div>首页</div>
         </template>
       </tabbar-item>
-      <tabbar-item path="/appstore" activeColor="deepPink">
+      <tabbar-item path="/appstore" activeColor="green">
         <!-- dom中使用路径别名需要在路劲最前面加上一个'~'符号 -->
         <template v-slot:item-icon>
           <img src="~assets/img/icon/appstore/商城.svg" />
@@ -26,7 +26,7 @@
           <div>商城</div>
         </template>
       </tabbar-item>
-      <tabbar-item path="/cart" activeColor="deepPink">
+      <tabbar-item path="/cart" activeColor="black">
         <!-- dom中使用路径别名需要在路劲最前面加上一个'~'符号 -->
         <template v-slot:item-icon>
           <img src="~assets/img/icon/cart/购物车.svg" />
@@ -38,7 +38,7 @@
           <div>购物车</div>
         </template>
       </tabbar-item>
-      <tabbar-item path="/profile" activeColor="deepPink">
+      <tabbar-item path="/profile" activeColor="red">
         <!-- dom中使用路径别名需要在路劲最前面加上一个'~'符号 -->
         <template v-slot:item-icon>
           <img src="~assets/img/icon/profile/我的.svg" />
@@ -54,9 +54,10 @@
   </tabbar>
   <!-- 引入"小电视机" -->
   <!-- keep-alive在路由切换时不要让组件销毁 -->
-  <keep-alive>
-    <router-view></router-view>
+  <keep-alive exclude="Detail">
+    <router-view/>
   </keep-alive>
+  
 </template>
 
 <script>

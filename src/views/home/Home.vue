@@ -96,24 +96,21 @@ export default {
         pop: {
           page: 0,
           list: [],
-          hasMore: true, //添加hasMore判断是否还有数据，如果有，我们就去计算可滚动区域高度值，即调用BScroll的refresh()方法，没有数据就不调用了，优化性能。
         },
         new: {
           page: 0,
           list: [],
-          hasMore: true,
         },
         sell: {
           page: 0,
           list: [],
-          hasMore: true,
         },
       },
       currentType: "pop",
       isShowBackTop: false, //默认为false,不展示回到顶部图标
       tabControlOffsetTop: 0, //用于计算tabControl组件的离顶距离，从而实现吸顶效果
       isAttachToTop: false, //用于给组件添加是否固定吸顶的样式效果
-      saveY:0,  // 记录home离开激活状态时的位置，以便切换回来时直接定位到离开时的位置。
+      saveY: 0, // 记录home离开激活状态时的位置，以便切换回来时直接定位到离开时的位置。
     };
   },
   computed: {
@@ -164,20 +161,16 @@ export default {
     // 实际开发中，如果有必要，可以监听多个影响的图片加载事件
     slideImgLoaded() {
       // 因为组件是没有offsetTop属性值的，而它对应的元素有offsetTop属性值。我们通过'$el'获取组件渲染后对应的元素【准确来说元素是都具有offsetTop属性值的】
-      console.log(this.$refs.tabControl.$el.offsetTop);
+      // console.log(this.$refs.tabControl.$el.offsetTop);
       this.tabControlOffsetTop = this.$refs.tabControl.$el.offsetTop;
     },
 
     // 上拉加载更多数据
     loadMoreData() {
       // 有更多数据就刷新，没有就别做了。
-      if (this.goods[this.currentType].hasMore) {
-        this.getPageGoods(this.currentType);
-        this.$refs.scroll.finishPullUp();
-        this.$refs.scroll.refresh();
-      } else {
-        alert("我是有底线的!!!");
-      }
+      this.getPageGoods(this.currentType);
+      this.$refs.scroll.finishPullUp();
+      this.$refs.scroll.refresh();
 
       // 主要是因为better-scroll的滚动区域大小是计算出来的特性+图片异步加载慢特性会产生BUG！正常的话图片加载快，在bscroll计算出可滚动区域高度（由BScroll.scrollerHeight属性记录）之前已经完成图片加载，
       // 则不会产生BUG.如果图片加载慢，那么bscroll计算可滚动区域高度时会根据已加载的组件以及内容来计算高度。这样可滚动区域高度值就变小了，导致往下滚动时出现滚动不了的BUG.所以要手动刷新一下这个bscroll对象
@@ -209,15 +202,12 @@ export default {
       let page = this.goods[type].page;
       // console.log(page);
       getHomeGoods(type, page).then((res) => {
+        // console.log(res.data.data);
         // console.log(res.data.data.length);
         // 有数据我们就去更新数据，没有数据就不要继续做了
-        if (res.data.data.length > 0) {
-          // arr1.push(...arr2):这种语法可以将arr2中每一个元素依次放到arr1中去。避免遍历写法麻烦
-          this.goods[type].list.push(...res.data.data);
-          this.goods[type].page += 1;
-        } else {
-          this.goods[type].hasMore = false;
-        }
+        // arr1.push(...arr2):这种语法可以将arr2中每一个元素依次放到arr1中去。避免遍历写法麻烦
+        this.goods[type].list.push(...res.data.data);
+        this.goods[type].page += 1;
       });
     },
 
@@ -237,8 +227,8 @@ export default {
   },
 
   /**
-     *  ★★★★Vue组件自带函数★★★★
-     */
+   *  ★★★★Vue组件自带函数★★★★
+   */
   //发送请求拿数据,随后用data保存.因为create函数是个比较特殊的函数，所以我们一般不在这个里面写实现逻辑，而是抽取出到methods中
   // Q2:created()函数中this作用域是从里往外找的？created()中this指向当前组件对象
   created() {
@@ -265,6 +255,7 @@ export default {
       // this.$refs.scroll && this.$refs.scroll.refresh();
       debouncedRefresh();
     });
+    //this.$bus.off(事件名，函数)----》》》取消全局事件监听
 
     // 计算tabControl组件的offsetTop值
     // $el：vue所有组件都具有的一个属性，用来获取组件渲染后对应的元素【因为this.$refs.tabControl拿到的是组件，组件是没有offsetTop属性值的，必须通过他的元素来获取】
@@ -272,22 +263,23 @@ export default {
     // this.tabControlOffsetTop = this.$refs.tabControl.$el.offsetTop
   },
 
-  // destroyed(){
-  //   console.log("home组件销毁...")
+  // CVue3.x版本中unmounted代替了原来的destroyed()方法
+  // unmounted() {
+  //   console.log("home组件销毁...");
   // },
 
   // 组件进入激活状态时调用
-  activated(){
-    console.log("进入home...")
-    this.$refs.scroll.scrollTo(0,this.saveY,0)
-    this.$refs.scroll.refresh()
+  activated() {
+    console.log("进入home...");
+    this.$refs.scroll.scrollTo(0, this.saveY, 0);
+    this.$refs.scroll.refresh();
   },
 
   // 组件离开激活状态时调用
-  deactivated(){
-    console.log("离开home...")
-    this.saveY = this.$refs.scroll.getScrollY()
-    console.log("saveY:"+this.saveY)
+  deactivated() {
+    console.log("离开home...");
+    this.saveY = this.$refs.scroll.getScrollY();
+    console.log("saveY:" + this.saveY);
   },
 };
 Navbar;

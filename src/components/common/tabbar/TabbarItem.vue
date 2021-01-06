@@ -19,7 +19,7 @@ export default {
     activeColor: {
       type: String,
       //默认粉色
-      default: "pink",
+      default: "grey",
     },
   },
   //组件的data必须是函数
@@ -41,7 +41,7 @@ export default {
   methods: {
     // 点击进行路由跳转
     changeLink() {
-      console.log("即将跳转到：" + this.path);//这个地方打印了/home，可以证明this指向的是当前的组件实例。而this.$route以及this.$router都是undefined，
+      // console.log("即将跳转到：" + this.path);//这个地方打印了/home，可以证明this指向的是当前的组件实例。而this.$route以及this.$router都是undefined，
       //推理出：vue原型中的全局属性并没有路由属性，所以肯定是vue-router插件使用问题导致没有挂载到Vue原型上面去！
       this.$router.push(this.path);
     },
