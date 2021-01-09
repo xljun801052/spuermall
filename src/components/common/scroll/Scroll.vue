@@ -20,8 +20,8 @@ export default {
     },
     pullUpLoad: {
       type: Boolean,
-      // 默认不需要上拉加载更多
-      default: false,
+      // 默认不需要上拉加载更多,但是我们用到的场景基本都是需要上拉加载的，所以设置为true.否则会报错：EventEmitter has used unknown event type: “pullingUp“
+      default: true,
       required: false,
     },
   },

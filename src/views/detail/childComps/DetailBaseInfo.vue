@@ -24,62 +24,6 @@
         {{ service }}
       </div>
     </div>
-    <ul>
-        <li>aa</li>
-        <li>aa</li>
-        <li>aa</li>
-        <li>aa</li>
-        <li>aa</li>
-        <li>aa</li>
-        <li>aa</li>
-        <li>aa</li>
-        <li>aa</li>
-        <li>aa</li>
-        <li>aa</li>
-        <li>aa</li>
-        <li>aa</li>
-        <li>aa</li>
-        <li>aa</li>
-        <li>aa</li>
-        <li>aa</li>
-        <li>aa</li>
-        <li>aa</li>
-        <li>aa</li>
-        <li>aa</li>
-        <li>aa</li>
-        <li>aa</li>
-        <li>aa</li>
-        <li>aa</li>
-        <li>aa</li>
-        <li>aa</li>
-        <li>aa</li>
-        <li>aa</li>
-        <li>aa</li>
-        <li>aa</li>
-        <li>aa</li>
-        <li>aa</li>
-        <li>aa</li>
-        <li>aa</li>
-        <li>aa</li>
-        <li>aa</li>
-        <li>aa</li>
-        <li>aa</li>
-        <li>aa</li>
-        <li>aa</li>
-        <li>aa</li>
-        <li>aa</li>
-        <li>aa</li>
-        <li>aa</li>
-        <li>aa</li>
-        <li>aa</li>
-        <li>aa</li>
-        <li>aa</li>
-        <li>aa</li>
-        <li>aa</li>
-        <li>aa</li>
-        <li>aa</li>
-        
-    </ul>
   </div>
 </template>
 
