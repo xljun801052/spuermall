@@ -29,7 +29,7 @@ export default {
     speciaficationsInfo: function () {
       // step0：转成json数据
       this.speciafications = JSON.parse(this.speciaficationsInfo);
-      console.log(this.speciafications);
+      // console.log(this.speciafications);
       // step1：进行遍历
       //   for (var key in this.speciafications) {
       //     alert(key + ":" + this.speciafications[key]);

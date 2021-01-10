@@ -35,7 +35,7 @@ export default {
     return {
       titles: ["商品", "参数", "评论", "推荐"],
       currentIndex: 0,
-      goodId:null,
+      goodId: null,
     };
   },
   methods: {
@@ -44,11 +44,10 @@ export default {
     },
     currentActive(index) {
       this.currentIndex = index;
+      this.$emit("navbarClick", index);
     },
   },
-  created() {
-    
-  },
+  created() {},
 };
 </script>
 

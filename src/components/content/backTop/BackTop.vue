@@ -14,7 +14,7 @@ export default {
 .back-top {
   position: fixed;
   right: 25px;
-  bottom: 70px;
+  bottom: 80px;
   height: 50px;
   width: 50px;
   border-radius: 50%;

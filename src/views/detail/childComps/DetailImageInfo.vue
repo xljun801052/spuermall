@@ -1,13 +1,15 @@
 <template>
-  <!-- 这里可以用：v-if="Obejct.keys(detailImageInfo).length!==0"来保证没有数据的时候不加载，有数据再加载渲染 -->
-  <div id="detail-imageinfo" v-if="Object.keys(detailImageInfo).length !== 0">
-    <div class="detail-img-title">{{imageTitle}}</div>
-    <div
-      v-for="(imglink, index) in imageLinks"
-      :key="index"
-      class="image-content"
-    >
-      <img :src="imglink" alt="详情图" @load="detailImgLoaded" />
+  <div>
+    <!-- 这里可以用：v-if="Obejct.keys(detailImageInfo).length!==0"来保证没有数据的时候不加载，有数据再加载渲染 -->
+    <div id="detail-imageinfo" v-if="Object.keys(detailImageInfo).length !== 0">
+      <div class="detail-img-title">{{ imageTitle }}</div>
+      <div
+        v-for="(imglink, index) in imageLinks"
+        :key="index"
+        class="image-content"
+      >
+        <img :src="imglink" alt="详情图" @load="detailImgLoaded" />
+      </div>
     </div>
   </div>
 </template>
@@ -28,7 +30,7 @@ export default {
     return {
       // 我们这个图片详情组件面向detailImage这个数据封装对象开发！将父组件传过来的detailImage进行数据拆分
       imageLinks: null,
-      imageTitle:"",
+      imageTitle: "",
     };
   },
   // 父组件将数据给到子组件如果父组件的数据是异步获取的，那么这个时候很有可能造成子组件通过props拿到的值是undefined，我们可以用watch来监控数据变化重新渲染解决！
@@ -36,7 +38,7 @@ export default {
     detailImageInfo: function () {
       // console.log(this.detailImageInfo.goodsDetailImageUrls);
       this.imageLinks = this.detailImageInfo.goodsDetailImageUrls.split(",");
-      this.imageTitle = this.detailImageInfo.goodsDesc
+      this.imageTitle = this.detailImageInfo.goodsDesc;
     },
   },
   methods: {
@@ -49,10 +51,10 @@ export default {
 </script>
 
 <style scoped>
-#detail-imageinfo{
+#detail-imageinfo {
   margin: 15px 0px;
-  border-top: 2px solid  deeppink;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  border-top: 2px solid deeppink;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
 
 .detail-img-title {
