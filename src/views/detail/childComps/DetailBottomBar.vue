@@ -64,7 +64,7 @@ export default {
       this.isKefuActive = false;
     },
 
-    // 添加到购物车
+    // 添加到购物车【Vue 3 建议对组件中所有发出的事件 emit 进行记录 emits 。如果你声明了 emits 选项，并且发送的事件没有被 emits 记录，则会收到一个警告】
     addToCart(){
       this.$emit('addToCart')
     }

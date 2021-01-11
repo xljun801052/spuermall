@@ -2,13 +2,14 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router/index";
 import mitt from "mitt";
+import store from "./store/index";
 
 // vue-cli3.x+版本的插件注册安装是在这里进行的，不像之前使用Vue.use(...)。如果有多个插件，逗号分开就可以了。
 // createApp(App).mount('#app')
 // createApp(App).use(router).mount('#app')
 
 const app = createApp(App);
-app.use(router).mount("#app");
+app.use(router).use(store).mount("#app");
 
 //创建事件总线
 // Vue2.x版本写法

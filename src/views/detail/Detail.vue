@@ -124,7 +124,7 @@ export default {
         this.themeTopYs.push(this.$refs.imageInfo.$el.offsetTop);
         this.themeTopYs.push(this.$refs.specificationsInfo.$el.offsetTop);
         this.themeTopYs.push(Number.MAX_VALUE);
-        console.log(this.themeTopYs);
+        // console.log(this.themeTopYs);
       }, 200);
     });
 
@@ -267,7 +267,9 @@ export default {
       // console.log(product)
 
       // 将商品数据发送到Vuex中【不同组件间需要全局共享的数据，我们一般放到Vuex中，这样共享很方便~_~】
-      
+      // this.$store.cartList.push(product) // 不建议直接修改state里面的数据，而是通过mutations来修改
+      // this.$store.commit('addCart',product) // 为了方便mutations跟踪，继续重构！
+      this.$store.dispatch('addCart',product) // 调用actions中方法
     },
   },
   mounted() {
