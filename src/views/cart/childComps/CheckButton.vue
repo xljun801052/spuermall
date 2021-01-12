@@ -1,10 +1,11 @@
 <template>
-  <div id="checkbuttom">
-    <div v-if="isActive">
-      <img src="~assets/img/detail/check_active.svg" alt="" />
-    </div>
-    <div v-else>
-      <img src="~assets/img/detail/check.svg" alt="" />
+  <div id="checkbutton">
+    <div class="btnCheckimg">
+      <img
+        src="~assets/img/detail/check.png"
+        alt=""
+        :class="{ check: isActive }"
+      />
     </div>
   </div>
 </template>
@@ -21,9 +22,22 @@ export default {
 };
 </script>
 
-<style scoped`>
+<style scoped>
+.btnCheckimg {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
 img {
-  width: 40px;
-  height: 40px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+}
+
+.check {
+  background-color: red;
+  border-color: red;
 }
 </style>

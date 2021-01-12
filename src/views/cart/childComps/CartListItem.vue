@@ -1,8 +1,7 @@
 <template>
   <div id="cartListItem">
-    <!-- <div @click="changeActive">
-      <CheckButton :isActive="isActive"></CheckButton>
-    </div> -->
+    <!-- 根据模型的属性来决定是否选中，改变的时候也是改变模型的属性 -->
+    <CheckButton @click="changeActive" :isActive="product.check"></CheckButton>
     <div class="item-img">
       <img :src="product.image" alt="商品图" />
     </div>
@@ -29,19 +28,14 @@ export default {
       },
     },
   },
-//   data() {
-//     return {
-//       isActive: false,
-//     };
-//   },
   components: {
     CheckButton,
   },
-//   methods:{
-//       changeActive(){
-//           this.isActive = !this.isActive
-//       }
-//   }
+  methods: {
+    changeActive() {
+      this.product.check = !this.product.check;
+    },
+  },
 };
 </script>
 
@@ -49,6 +43,7 @@ export default {
 #cartListItem {
   width: 100%;
   display: flex;
+  justify-content: space-around;
   padding: 5px;
   border-bottom: 1px solid #ccc;
 }
@@ -68,7 +63,7 @@ export default {
 
 .item-info {
   position: relative;
-  width: 620px;
+  width: 580px;
   padding-left: 3px;
   font-size: 25px;
 }

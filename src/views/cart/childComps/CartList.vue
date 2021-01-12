@@ -28,7 +28,13 @@ export default {
 </script>
 
 <style scoped>
+#cartList {
+  /* calc 必须计算参与值之间由空格分开 ，另外这里减去顶部CartNavbar(44px)、tabbar(55px)、CartBottomBar(50px) */
+  height: calc(100vh - 44px - 55px - 50px);
+}
+
 .cartlist_content {
-  height: calc(100%-440px);
+  height: calc(100vh - 44px - 55px - 50px);
+  overflow: hidden;
 }
 </style>
