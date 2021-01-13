@@ -39,6 +39,9 @@
 
     <!-- 详情底部栏部分 -->
     <DetailBottomBar @addToCart="addToCart"></DetailBottomBar>
+
+    <!-- 弹出提示Toast部分 -->
+    <Toast :message="alertMessage" :isShow="isShow"></Toast>
     <hr />
   </div>
 </template>
@@ -56,9 +59,12 @@ import DetailBaseInfo from "./childComps/DetailBaseInfo";
 import DetailImageInfo from "./childComps/DetailImageInfo";
 import DetailSpeciaficationsInfo from "./childComps/DetailSpeciaficationsInfo";
 import DetailBottomBar from "./childComps/DetailBottomBar";
+import Toast from "components/common/toast/Toast";
 
 import BackTop from "components/content/backTop/BackTop";
 import Scroll from "components/common/scroll/Scroll";
+
+import { mapActions } from "vuex";
 
 import { BACK_TOP } from "common/const";
 
@@ -73,6 +79,7 @@ export default {
     DetailImageInfo,
     DetailSpeciaficationsInfo,
     DetailBottomBar,
+    Toast,
     BackTop,
     Scroll,
   },
@@ -94,6 +101,8 @@ export default {
       currentIndex: 0,
       // 决定是否回到顶部
       isShowBackTop: false,
+      alertMessage: "",
+      isShow: false,
     };
   },
   created() {
@@ -168,6 +177,12 @@ export default {
     });
   },
   methods: {
+    // 使用mapActions,同样有两种写法，对象写法和数组写法
+    // ...mapActions(['addCart'])
+    ...mapActions({
+      add: "addCart",
+    }),
+
     // 要用防抖动处理一下,失败了...后续研究吧~~
     debounce(func, delay = 50) {
       // delay=50：这个是ES6的新语法，设置参数默认值！
@@ -269,7 +284,22 @@ export default {
       // 将商品数据发送到Vuex中【不同组件间需要全局共享的数据，我们一般放到Vuex中，这样共享很方便~_~】
       // this.$store.cartList.push(product) // 不建议直接修改state里面的数据，而是通过mutations来修改
       // this.$store.commit('addCart',product) // 为了方便mutations跟踪，继续重构！
-      this.$store.dispatch('addCart',product) // 调用actions中方法
+      // 这里dispatch()方法返回的是一个promise【调用actions中方法,action返回的是一个Promise】,但这样写不够优雅，我们联想到Vuex的映射功能，于是有了mapActions，继续重构！
+      // this.$store.dispatch("addCart", product).then((res) => {
+      //   console.log(res);
+      // });
+      // 使用mapActions的功能来替代this.$store.dispatch("addCart", product)
+      this.add(product).then((res) => {
+        // 在这里实现一个toast~【吐司的烟】做提示效果
+        // console.log(res);
+        this.isShow = true;
+        this.alertMessage = res;
+        // 定时器使得toast过一会消失~~
+        setTimeout(() => {
+          this.isShow = false;
+          this.alertMessage = "";
+        }, 2000);
+      });
     },
   },
   mounted() {
